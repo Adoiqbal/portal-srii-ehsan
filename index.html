@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="ms" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Ibu Bapa SRII Ehsan</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+    
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      line-height: 1.6;
+      color: #2d3748;
+    }
+    
+    .app-wrapper {
+      min-height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 50%, #f0f9ff 100%);
+      overflow-x: hidden;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #166534 0%, #0d9488 50%, #0369a1 100%);
+      padding: 3rem 1.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5L35 15L45 15L37.5 22.5L40 32.5L30 27.5L20 32.5L22.5 22.5L15 15L25 15L30 5Z' fill='%23ffffff' fill-opacity='0.05'/%3E%3C/svg%3E");
+      animation: float 30s linear infinite;
+    }
+    
+    @keyframes float {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-30px, -30px); }
+    }
+    
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+    
+    .hero-icon svg {
+      width: 48px;
+      height: 48px;
+      fill: white;
+    }
+    
+    .hero h1 {
+      color: white;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .hero p {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #166534;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .section-title::before {
+      content: '';
+      width: 4px;
+      height: 24px;
+      background: linear-gradient(to bottom, #166534, #0d9488);
+      border-radius: 2px;
+    }
+    
+    /* Quick Access Grid */
+    .quick-access {
+      margin-bottom: 2.5rem;
+    }
+    
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    
+    .quick-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.25rem;
+      text-align: center;
+      text-decoration: none;
+      color: #2d3748;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(22, 101, 52, 0.1);
+      cursor: pointer;
+    }
+    
+    .quick-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(22, 101, 52, 0.15);
+      border-color: #166534;
+    }
+    
+    .quick-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 0.75rem;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+    }
+    
+    .quick-icon.memo { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+    .quick-icon.yuran { background: linear-gradient(135deg, #cffafe, #a5f3fc); }
+    .quick-icon.program { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+    .quick-icon.takwim { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+    .quick-icon.borang { background: linear-gradient(135deg, #fce7f3, #fbcfe8); }
+    
+    .quick-card span {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    
+    /* Announcements */
+    .announcements {
+      margin-bottom: 2rem;
+    }
+    
+    .announcement-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .announcement-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid #166534;
+      transition: all 0.3s ease;
+    }
+    
+    .announcement-card:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+    
+    .announcement-card.yuran { border-left-color: #0d9488; }
+    .announcement-card.program { border-left-color: #0369a1; }
+    .announcement-card.hebahan { border-left-color: #166534; }
+    
+    .announcement-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .category-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .category-tag.yuran { background: #ccfbf1; color: #0f766e; }
+    .category-tag.program { background: #dbeafe; color: #1d4ed8; }
+    .category-tag.hebahan { background: #dcfce7; color: #166534; }
+    
+    .announcement-date {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+    
+    .announcement-title {
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 0.375rem;
+      font-size: 0.95rem;
+    }
+    
+    .announcement-desc {
+      font-size: 0.85rem;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #166534 0%, #0d9488 100%);
+      color: white;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      margin-top: auto;
+    }
+    
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-contact {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-copyright {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Responsive */
+    @media (min-width: 640px) {
+      .hero {
+        padding: 4rem 2rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+      
+      .main-content {
+        padding: 2.5rem 2rem;
+      }
+      
+      .quick-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+      }
+      
+      .quick-card {
+        padding: 1.5rem;
+      }
+    }
+    
+    @media (min-width: 768px) {
+      .quick-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+      
+      .announcement-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .announcement-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="app-wrapper"><!-- Hero Section -->
+   <header class="hero">
+    <div class="hero-content">
+     <div class="hero-icon">
+      <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L1 9L5 11.18V17.18L12 21L19 17.18V11.18L21 10.09V17H23V9L12 3ZM18.82 9L12 12.72L5.18 9L12 5.28L18.82 9ZM17 15.99L12 18.72L7 15.99V12.27L12 15L17 12.27V15.99Z" />
+      </svg>
+     </div>
+     <h1 id="hero-title">Portal Ibu Bapa SRII Ehsan</h1>
+     <p id="hero-subtitle">Saluran Rasmi Makluman, Memo &amp; Aktiviti Sekolah</p>
+    </div>
+   </header><!-- Main Content -->
+   <main class="main-content"><!-- Quick Access Section -->
+    <section class="quick-access">
+     <h2 class="section-title">Akses Pantas</h2>
+     <div class="quick-grid">
+      <div class="quick-card">
+       <div class="quick-icon memo">
+        📋
+       </div><span id="memo-text">Memo Rasmi</span>
+      </div>
+      <div class="quick-card">
+       <div class="quick-icon yuran">
+        💰
+       </div><span id="yuran-text">Yuran</span>
+      </div>
+      <div class="quick-card">
+       <div class="quick-icon program">
+        🎯
+       </div><span id="program-text">Program &amp; Aktiviti</span>
+      </div>
+      <div class="quick-card">
+       <div class="quick-icon takwim">
+        📅
+       </div><span id="takwim-text">Takwim Sekolah</span>
+      </div>
+      <div class="quick-card">
+       <div class="quick-icon borang">
+        📝
+       </div><span id="borang-text">Borang Ibu Bapa</span>
+      </div>
+     </div>
+    </section><!-- Announcements Section -->
+    <section class="announcements">
+     <h2 class="section-title">Pengumuman Terkini</h2>
+     <div class="announcement-list">
+      <article class="announcement-card yuran">
+       <div class="announcement-header"><span class="category-tag yuran">Yuran</span> <span class="announcement-date">15 Jan 2026</span>
+       </div>
+       <h3 class="announcement-title">Peringatan Bayaran Yuran Semester 1</h3>
+       <p class="announcement-desc">Sila pastikan bayaran yuran semester pertama dijelaskan sebelum 31 Januari 2026. Rujuk portal untuk maklumat lanjut.</p>
+      </article>
+      <article class="announcement-card program">
+       <div class="announcement-header"><span class="category-tag program">Program</span> <span class="announcement-date">12 Jan 2026</span>
+       </div>
+       <h3 class="announcement-title">Program Motivasi Pelajar 2026</h3>
+       <p class="announcement-desc">Program motivasi akan diadakan pada 20 Januari 2026. Kehadiran semua pelajar adalah diwajibkan.</p>
+      </article>
+      <article class="announcement-card hebahan">
+       <div class="announcement-header"><span class="category-tag hebahan">Hebahan</span> <span class="announcement-date">10 Jan 2026</span>
+       </div>
+       <h3 class="announcement-title">Pendaftaran Aktiviti Ko-Kurikulum</h3>
+       <p class="announcement-desc">Pendaftaran untuk aktiviti ko-kurikulum semester baru kini dibuka. Sila lengkapkan borang sebelum 25 Januari.</p>
+      </article>
+     </div>
+    </section>
+   </main><!-- Footer -->
+   <footer>
+    <div class="footer-content">
+     <div class="footer-logo" id="footer-school">
+      🕌 SRII Ehsan
+     </div>
+     <div class="footer-contact" id="footer-contact">
+      📞 03-XXXX XXXX | ✉️ info@sriiehsan.edu.my
+     </div>
+     <div class="footer-copyright">
+      © 2026 SRII Ehsan. Hak Cipta Terpelihara.
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      hero_title: 'Portal Ibu Bapa SRII Ehsan',
+      hero_subtitle: 'Saluran Rasmi Makluman, Memo & Aktiviti Sekolah',
+      memo_text: 'Memo Rasmi',
+      yuran_text: 'Yuran',
+      program_text: 'Program & Aktiviti',
+      takwim_text: 'Takwim Sekolah',
+      borang_text: 'Borang Ibu Bapa',
+      footer_school: '🕌 SRII Ehsan',
+      footer_contact: '📞 03-XXXX XXXX | ✉️ info@sriiehsan.edu.my',
+      primary_color: '#166534',
+      secondary_color: '#0d9488',
+      accent_color: '#0369a1',
+      text_color: '#2d3748',
+      background_color: '#f0fdf4',
+      font_family: 'Noto Sans',
+      font_size: 16
+    };
+    
+    async function onConfigChange(config) {
+      const heroTitle = document.getElementById('hero-title');
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      const memoText = document.getElementById('memo-text');
+      const yuranText = document.getElementById('yuran-text');
+      const programText = document.getElementById('program-text');
+      const takwimText = document.getElementById('takwim-text');
+      const borangText = document.getElementById('borang-text');
+      const footerSchool = document.getElementById('footer-school');
+      const footerContact = document.getElementById('footer-contact');
+      
+      if (heroTitle) heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
+      if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      if (memoText) memoText.textContent = config.memo_text || defaultConfig.memo_text;
+      if (yuranText) yuranText.textContent = config.yuran_text || defaultConfig.yuran_text;
+      if (programText) programText.textContent = config.program_text || defaultConfig.program_text;
+      if (takwimText) takwimText.textContent = config.takwim_text || defaultConfig.takwim_text;
+      if (borangText) borangText.textContent = config.borang_text || defaultConfig.borang_text;
+      if (footerSchool) footerSchool.textContent = config.footer_school || defaultConfig.footer_school;
+      if (footerContact) footerContact.textContent = config.footer_contact || defaultConfig.footer_contact;
+      
+      // Apply font
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${fontFamily}, 'Noto Sans', sans-serif`;
+      
+      // Apply font size scaling
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.documentElement.style.fontSize = `${baseSize}px`;
+      
+      // Apply colors
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      
+      document.body.style.color = textColor;
+      
+      const appWrapper = document.querySelector('.app-wrapper');
+      if (appWrapper) {
+        appWrapper.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${adjustColor(backgroundColor, -5)} 50%, ${adjustColor(backgroundColor, -10)} 100%)`;
+      }
+      
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 50%, ${accentColor} 100%)`;
+      }
+      
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
+      }
+      
+      const sectionTitles = document.querySelectorAll('.section-title');
+      sectionTitles.forEach(title => {
+        title.style.color = primaryColor;
+      });
+      
+      const quickCards = document.querySelectorAll('.quick-card');
+      quickCards.forEach(card => {
+        card.style.borderColor = `${primaryColor}20`;
+      });
+    }
+    
+    function adjustColor(hex, percent) {
+      const num = parseInt(hex.replace('#', ''), 16);
+      const amt = Math.round(2.55 * percent);
+      const R = (num >> 16) + amt;
+      const G = (num >> 8 & 0x00FF) + amt;
+      const B = (num & 0x0000FF) + amt;
+      return '#' + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+    }
+    
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              config.primary_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ primary_color: value });
+            }
+          },
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              config.secondary_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ secondary_color: value });
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ accent_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            if (window.elementSdk) window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            if (window.elementSdk) window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+    
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+        ['memo_text', config.memo_text || defaultConfig.memo_text],
+        ['yuran_text', config.yuran_text || defaultConfig.yuran_text],
+        ['program_text', config.program_text || defaultConfig.program_text],
+        ['takwim_text', config.takwim_text || defaultConfig.takwim_text],
+        ['borang_text', config.borang_text || defaultConfig.borang_text],
+        ['footer_school', config.footer_school || defaultConfig.footer_school],
+        ['footer_contact', config.footer_contact || defaultConfig.footer_contact]
+      ]);
+    }
+    
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c1bde2f015516ee',t:'MTc2OTA1MTUyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
